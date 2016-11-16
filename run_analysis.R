@@ -15,7 +15,7 @@
 # 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 #====================================================================
-## Step1: Merges the training and the test sets to create one data set.
+## 1: Merges the training and the test sets to create one data set.
 
 library(dplyr)
 
@@ -46,7 +46,7 @@ sub_act <- bind_cols(data_sub, data_act)
 data <- bind_cols(data_set, sub_act)         ## A merged feature-subject-activity DF with test and train data
 
 #====================================================================
-## Step2: Extracts only the measurements on the mean and standard deviation for each measurement.
+## 2: Extracts only the measurements on the mean and standard deviation for each measurement.
 
 feature_names_file = './UCI HAR Dataset/UCI HAR Dataset/features.txt'
 feature_names <- read.table(feature_names_file)
@@ -60,7 +60,7 @@ sub_features_names <- feature_names$V2[grep("mean\\(\\)|std\\(\\)", feature_name
 data_2 <- subset(data, select = c(c(as.character(sub_features_names)), "Subject", "Activity"))
 
 #====================================================================
-## Step3: Uses descriptive activity names to name the activities in the data set
+## 3: Uses descriptive activity names to name the activities in the data set
 
 # get activity_data data frame
 activit_labels_file = './UCI HAR Dataset/UCI HAR Dataset/activity_labels.txt'  ## activity_labels 1~6
@@ -72,7 +72,7 @@ data_3 <- merge(data_2, activities_data, by="Activity", all.x=TRUE)      # merge
 
 
 #====================================================================
-## Step4: Appropriately labels the data set with descriptive variable names.
+## 4: Appropriately labels the data set with descriptive variable names.
 
 # features_info.txt
 data_4 <- data_3
@@ -85,7 +85,7 @@ names(data_4)<-gsub("BodyBody", "Body", names(data_4))
 
 
 #====================================================================
-## Step5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+## 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 write.table(data_4, "TidyData_5.txt", row.name=FALSE)
 write.table(summary(data_4), "TidyData_5_Summary.txt", row.name=FALSE)
