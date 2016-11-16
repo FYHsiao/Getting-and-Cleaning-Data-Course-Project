@@ -45,7 +45,8 @@ Notes:
 For more information about this dataset contact: activityrecognition@smartlab.ws
 
 
-## Transformation details
+run_analysis.R Transformation details
+=====================================
 
 There are 5 parts:
 
